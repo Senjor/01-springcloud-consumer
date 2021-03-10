@@ -1,0 +1,9 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: 02-eureka-client-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9100/eureka
