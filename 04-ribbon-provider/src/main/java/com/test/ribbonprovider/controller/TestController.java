@@ -5,7 +5,7 @@
  * @Date: 2021/3/10 3:19 下午
  * @Description: TODO
  */
-package com.test.eurekaclientprovider.controller;
+package com.test.ribbonprovider.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,7 @@ public class TestController {
 
     @GetMapping("/hello")
     public String test(){
-        return "eureka provider hello  8083";
+        return "ribbon provider hello  8085";
     }
 }
 

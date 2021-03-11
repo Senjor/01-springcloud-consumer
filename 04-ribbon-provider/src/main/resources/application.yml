@@ -1,0 +1,11 @@
+
+server:
+  port: 8085
+
+spring:
+  application:
+    name: 02-eureka-client-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9100:9100/eureka,http://eureka9200:9200/eureka
