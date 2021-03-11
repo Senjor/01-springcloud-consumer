@@ -1,0 +1,13 @@
+server:
+  port: 9200
+eureka:
+  instance:
+    hostname: eureka9200
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://eureka9100:9100/eureka
+spring:
+  application:
+    name: eureka9200

@@ -2,9 +2,15 @@ server:
   port: 9100
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka9100
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://eureka9200:9200/eureka
+#  修改保护模式为禁止  这样将来eureka获取不了service的心跳包，就会移除对应的service
+#  server:
+#    enable-self-preservation: false
+spring:
+  application:
+    name: eureka9100
