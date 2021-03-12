@@ -18,7 +18,19 @@ public class TestController {
 
 //        模拟服务异常，实现异常熔断
         System.out.println(10/0);
-        return "hystrix provider hello  8086";
+        return "服务异常 hystrix provider hello  8086";
+    }
+
+    @GetMapping("/test1")
+    public String test1(){
+
+//        模拟服务延迟，实现异常熔断
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "服务延迟 hystrix provider hello  8086";
     }
 }
 

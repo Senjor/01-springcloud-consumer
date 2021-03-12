@@ -8,6 +8,7 @@
 package com.test.eurekaclienthystrixconsumer.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,6 +41,23 @@ public class TestController {
 
     public String error(){
         return "服务熔断了";
+    }
+
+
+//   熔断属性设置超时时间1.5s 默认是1s
+    @HystrixCommand(fallbackMethod = "error",commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "1500")
+    })
+    @GetMapping("/test1")
+    public String test1(){
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://06-EUREKA-CLIENT-HYSTRIX-PROVIDER/test1", String.class);
+
+
+        System.out.println(entity.getStatusCode());
+        System.out.println(entity.getHeaders());
+
+
+        return "延时 hystrix client consumer..." + entity.getBody();
     }
 
 }
