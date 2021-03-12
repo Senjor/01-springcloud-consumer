@@ -1,0 +1,10 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: 06-eureka-client-hystrix-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9100:9100/eureka,http://eureka9200:9200/eureka
