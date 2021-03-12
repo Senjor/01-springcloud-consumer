@@ -7,12 +7,15 @@
  */
 package com.test.eurekaclientconsumer.controller;
 
+import com.test.eurekaclientconsumer.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class TestController {
@@ -36,6 +39,26 @@ public class TestController {
 
 
         return "eureka client consumer..." + entity.getBody();
+    }
+
+    @GetMapping("/template")
+    public String template(){
+
+//      String也可以改成User对象
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://02-EUREKA-CLIENT-PROVIDER/getForEntity", String.class);
+
+        System.out.println(entity.getStatusCode());
+        System.out.println(entity.getHeaders());
+
+//      如果需要发送get请求传递参数时，需要使用getForEntity的重载方法，把参数传递到第三个参数中，比如
+//        String url = "http://02-EUREKA-CLIENT-PROVIDER/getForEntity?id={id}&name={name}&age={age}";
+//        Map<String,Object> params = new HashMap<>();
+//        params.put("id",1L);
+//        params.put("name","zhangsan");
+//        params.put("age",18);
+//        restTemplate.getForEntity(url, User.class,params);
+
+        return "from template provider 8086..." + entity.getBody();
     }
 }
 

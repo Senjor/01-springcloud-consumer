@@ -20,7 +20,7 @@ public class TestController {
     @Resource
     private RestTemplate restTemplate;
 
-    @GetMapping("test")
+    @GetMapping("/test")
     public String test(){
 
 //      通过RestTemplate完成服务间的调用
@@ -33,4 +33,6 @@ public class TestController {
 
         return "consumer..." + entity.getBody();
     }
+
+
 }
