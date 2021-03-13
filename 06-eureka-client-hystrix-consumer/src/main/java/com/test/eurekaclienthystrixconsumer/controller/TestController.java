@@ -7,8 +7,10 @@
  */
 package com.test.eurekaclienthystrixconsumer.controller;
 
+import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.test.eurekaclienthystrixconsumer.hystrix.MyHystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,5 +74,15 @@ public class TestController {
         return "延时 hystrix client consumer..." + entity.getBody();
     }
 
+
+    @GetMapping("/test2")
+    public String test2(){
+
+        MyHystrixCommand myHystrixCommand = new MyHystrixCommand(com.netflix.hystrix.HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("")),restTemplate,"http://06-EUREKA-CLIENT-HYSTRIX-PROVIDER/test");
+
+        String execute = (String) myHystrixCommand.execute();
+
+        return "自定义熔断 hystrix client consumer..." + execute;
+    }
 }
 
