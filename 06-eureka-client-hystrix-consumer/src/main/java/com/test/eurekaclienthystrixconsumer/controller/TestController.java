@@ -9,6 +9,7 @@ package com.test.eurekaclienthystrixconsumer.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
+@Slf4j
 @RestController
 public class TestController {
 
@@ -31,7 +33,8 @@ public class TestController {
     public String test(){
         ResponseEntity<String> entity = restTemplate.getForEntity("http://06-EUREKA-CLIENT-HYSTRIX-PROVIDER/test", String.class);
 
-
+//      put方法用于修改，因为调用时没有返回值，所以不清楚本地调用是否成功，所以非必要情况下不建议使用put方法。
+//      restTemplate.put();
         System.out.println(entity.getStatusCode());
         System.out.println(entity.getHeaders());
 
@@ -39,7 +42,16 @@ public class TestController {
         return "hystrix client consumer..." + entity.getBody();
     }
 
-    public String error(){
+    /*
+    * 服务降级方法
+    * */
+    public String error(Throwable throwable){
+
+//       异常信息打印
+//        System.out.println(throwable.getMessage());
+        log.info(throwable.getMessage());
+
+
         return "服务熔断了";
     }
 
