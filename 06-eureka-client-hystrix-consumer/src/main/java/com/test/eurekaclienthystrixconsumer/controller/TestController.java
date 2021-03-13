@@ -58,8 +58,8 @@ public class TestController {
 
 //   熔断属性设置超时时间1.5s 默认是1s
     @HystrixCommand(fallbackMethod = "error",commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "1500")
-    })
+            //ignoreExceptions 忽略异常，指定某些异常不进行熔断
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "1500")},ignoreExceptions = {Exception.class})
     @GetMapping("/test1")
     public String test1(){
         ResponseEntity<String> entity = restTemplate.getForEntity("http://06-EUREKA-CLIENT-HYSTRIX-PROVIDER/test1", String.class);
