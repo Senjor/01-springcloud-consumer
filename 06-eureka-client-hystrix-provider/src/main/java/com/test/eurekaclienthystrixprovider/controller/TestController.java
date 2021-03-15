@@ -7,7 +7,10 @@
  */
 package com.test.eurekaclienthystrixprovider.controller;
 
+import com.test.eurekaclienthystrixprovider.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -31,6 +34,19 @@ public class TestController {
             e.printStackTrace();
         }
         return "服务延迟 hystrix provider hello  8086";
+    }
+
+
+    @GetMapping("/testParams1")
+    public String testParams1(String name,Integer age){
+
+        return "带参数 hystrix provider hello  8086" + name + "  age：" + age;
+    }
+
+    @RequestMapping("/testParams2")
+    public String testParams2(@RequestBody User user){
+
+        return "带参数 User hystrix provider hello 8086 " + user.getName() + "  age：" + user.getAge();
     }
 }
 

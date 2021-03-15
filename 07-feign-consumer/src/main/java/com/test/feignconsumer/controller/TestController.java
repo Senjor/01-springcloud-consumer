@@ -9,10 +9,12 @@ package com.test.feignconsumer.controller;
 
 
 
+import com.test.feignconsumer.model.User;
 import com.test.feignconsumer.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,6 +31,27 @@ public class TestController {
     public String test(){
 
         String test = testService.test();
+
+        return "feign client consumer..." + test;
+    }
+
+
+    @GetMapping("/testParams1")
+    public String testParams1(){
+
+        String test = testService.testParams1("zhangsan",18);
+
+        return "feign client consumer..." + test;
+    }
+
+    @RequestMapping("/testParams2")
+    public String testParams2(){
+
+        User user = new User();
+        user.setName("laosun");
+        user.setAge(20);
+
+        String test = testService.testParams2(user);
 
         return "feign client consumer..." + test;
     }
