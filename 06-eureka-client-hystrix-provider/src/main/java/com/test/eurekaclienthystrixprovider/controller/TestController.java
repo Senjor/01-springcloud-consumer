@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 public class TestController {
 
@@ -47,6 +49,30 @@ public class TestController {
     public String testParams2(@RequestBody User user){
 
         return "带参数 User hystrix provider hello 8086 " + user.getName() + "  age：" + user.getAge();
+    }
+
+
+    @RequestMapping("/testReturnUser")
+    public Object testReturnUser(){
+
+        User lisi = new User(1L, "lisi", 100);
+
+        return lisi;
+    }
+
+
+    @RequestMapping("/testReturnList")
+    public Object testReturnList(){
+
+        User lisi = new User(1L, "lisi", 100);
+
+        User lisi1 = new User(11L, "lisi11", 1001);
+
+        ArrayList list = new ArrayList();
+        list.add(lisi);
+        list.add(lisi1);
+
+        return list;
     }
 }
 

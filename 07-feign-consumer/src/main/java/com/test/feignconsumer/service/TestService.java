@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 //name后面指定的要远程调用的服务名称
 @FeignClient(name = "06-EUREKA-CLIENT-HYSTRIX-PROVIDER")
 //spring会为此接口生成动态代理对象
@@ -28,4 +30,10 @@ public interface TestService {
 
     @RequestMapping("/testParams2")
     String testParams2(@RequestBody User user);
+
+    @RequestMapping("/testReturnUser")
+    User testReturnUser();
+
+    @RequestMapping("/testReturnList")
+    List<User> testReturnList();
 }

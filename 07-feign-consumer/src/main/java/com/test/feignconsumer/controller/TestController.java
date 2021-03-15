@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @RestController
@@ -54,6 +55,23 @@ public class TestController {
         String test = testService.testParams2(user);
 
         return "feign client consumer..." + test;
+    }
+
+
+    @RequestMapping("/testReturnUser")
+    public String testReturnUser(){
+
+        User user = testService.testReturnUser();
+
+        return "feign client consumer..." + user.getName() + "   " + user.getAge();
+    }
+
+    @RequestMapping("/testReturnList")
+    public String testReturnList(){
+
+        List list = testService.testReturnList();
+
+        return "feign client consumer..." +list;
     }
 
 }
