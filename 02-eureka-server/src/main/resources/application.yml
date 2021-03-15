@@ -5,7 +5,7 @@ eureka:
     hostname: eureka9100
   client:
     register-with-eureka: false
-    fetch-registry: false
+    fetch-registry: true
     service-url:
       defaultZone: http://eureka9200:9200/eureka
 #  修改保护模式为禁止  这样将来eureka获取不了service的心跳包，就会移除对应的service

@@ -8,12 +8,12 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 
 @SpringBootApplication
+@EnableEurekaClient
 
 //激活熔断机制
 @EnableHystrixDashboard
-@EnableHystrix
 @EnableCircuitBreaker
-@EnableEurekaClient
+
 public class HystrixDashboardApplication {
 
     public static void main(String[] args) {

@@ -5,7 +5,8 @@ eureka:
     hostname: eureka9200
   client:
     register-with-eureka: false
-    fetch-registry: false
+#   保证客户端能够去注册中心中拉取服务
+    fetch-registry: true
     service-url:
       defaultZone: http://eureka9100:9100/eureka
 spring:

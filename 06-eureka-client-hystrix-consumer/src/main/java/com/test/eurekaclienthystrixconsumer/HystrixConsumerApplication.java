@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 /*激活hystrix的熔断机制*/
 @EnableCircuitBreaker
 
-
 public class HystrixConsumerApplication {
 
     public static void main(String[] args) {

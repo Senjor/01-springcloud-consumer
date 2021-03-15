@@ -17,7 +17,7 @@ public class TestController {
     public String test(){
 
 //        模拟服务异常，实现异常熔断
-        System.out.println(10/0);
+//        System.out.println(10/0);
         return "服务异常 hystrix provider hello  8086";
     }
 
