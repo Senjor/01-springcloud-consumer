@@ -8,3 +8,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka9100:9100/eureka,http://eureka9200:9200/eureka
+
+#  开启健康检查机制的所有端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

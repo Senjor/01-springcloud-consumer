@@ -1,0 +1,13 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: 06-hystrix-dashboard
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9100:9100/eureka,http://eureka9200:9200/eureka
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"
