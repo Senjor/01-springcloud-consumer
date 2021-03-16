@@ -12,8 +12,13 @@ eureka:
 #  配置路由规则，path中的api-zuul可以任意填写
 #  /api-zuul/** 表示请求的拦截规则类似拦截器规则，表示以/api-zuul开头的任意目录以及子孙目录中所有请求都会被拦截
 #  serviceId 指向服务的名字，用于对这个服务下某个特写请求进行拦截
+#zuul:
+#  routes:
+#    api-zuul:
+#      path: /api-zuul/**
+#      serviceId: 08-eureka-client-zuul-provider
+
+#简化上面的写法： 拦截/api-zuul开头的请求，转发到08-eureka-client-zuul-provider服务中
 zuul:
   routes:
-    api-zuul:
-      path: /api-zuul/**
-      serviceId: 08-eureka-client-zuul-provider
+    08-eureka-client-zuul-provider: /api-zuul/**

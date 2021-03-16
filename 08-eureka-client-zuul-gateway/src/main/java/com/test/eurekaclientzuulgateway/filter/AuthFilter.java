@@ -10,6 +10,7 @@ package com.test.eurekaclientzuulgateway.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class AuthFilter extends ZuulFilter {
         return "pre";
     }
 
-//  过滤器序号  如果有多个过滤器，根据此返回值，决定执行顺序
+//  过滤器序号  如果有多个过滤器，根据此返回值，决定执行顺序，数字越小，先执行
     @Override
     public int filterOrder() {
         return 0;
@@ -53,7 +54,7 @@ public class AuthFilter extends ZuulFilter {
             context.setSendZuulResponse(false);
 
 //            401 或500代表权限不足
-            context.setResponseStatusCode(401);
+            context.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
 //            设置相应类型以及编码格式
             context.addZuulResponseHeader("content-type","text/html;charset=utf-8");
 
