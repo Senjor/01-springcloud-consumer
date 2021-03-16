@@ -1,0 +1,10 @@
+server:
+  port: 8102
+
+spring:
+  application:
+    name: 08-eureka-client-zuul-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka9100:9100/eureka,http://eureka9200:9200/eureka
