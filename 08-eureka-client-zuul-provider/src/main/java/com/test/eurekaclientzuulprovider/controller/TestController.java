@@ -40,5 +40,11 @@ public class TestController {
     }
 
 
+    @GetMapping("/test2")
+    public String test2(){
+
+        return "zuul provider test2  8101";
+    }
+
 }
 
